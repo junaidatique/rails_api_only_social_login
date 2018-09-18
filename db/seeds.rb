@@ -1,0 +1,1 @@
+User.create({email: 'hello@positng.ly', name: 'Admin', password: 'test1234', role: :admin})

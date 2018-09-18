@@ -42,3 +42,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'mongoid', '~> 6.1.0'
 gem 'devise'
 gem 'jwt'
+gem 'simple_enum', '~> 2.3.0' , require: 'simple_enum/mongoid'
