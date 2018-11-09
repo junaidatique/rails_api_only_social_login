@@ -7,7 +7,7 @@ module JWTAuth
     # Service entry point
     def call
       if user.present?        
-        
+        user.send_reset_password_instructions
       end
     end
 
