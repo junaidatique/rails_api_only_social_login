@@ -4,14 +4,14 @@ class Api::V1::SessionsController < ApiController
     auth_token = JWTAuth::AuthenticateUser.new(auth_params[:email], auth_params[:password]).call    
     json_response(auth_token: auth_token)
   end
-  def show
-    render 'user'
-  end
-  def destroy
-    sign_out(current_user)
-    @message = 'User has been logged out successfully.'
-    render 'message', :status => :ok
-  end
+  # def show
+  #   render 'user'
+  # end
+  # def destroy
+  #   sign_out(current_user)
+  #   @message = 'User has been logged out successfully.'
+  #   render 'message', :status => :ok
+  # end
 
   private
 

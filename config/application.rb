@@ -43,5 +43,9 @@ module Postingly
       end
     end
 
+    config.active_job.queue_adapter = :sidekiq
+    config.action_mailer.default_url_options = {:host => Rails.application.credentials.MAILER_HOST }
+
+
   end
 end
