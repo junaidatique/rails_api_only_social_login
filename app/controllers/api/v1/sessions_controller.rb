@@ -1,14 +1,8 @@
 class Api::V1::SessionsController < ApiController
-  
-  def create
-    user = User.where(email: user_params[:email]).first
-    return invalid_login_attempt unless user
-    if user&.valid_password?(user_params[:password])
-      sign_in(:user, user)
-      render 'user'
-    else
-      return invalid_login_attempt
-    end
+  skip_before_action :authorize_request, only: :create
+  def create    
+    auth_token = JWTAuth::AuthenticateUser.new(auth_params[:email], auth_params[:password]).call    
+    json_response(auth_token: auth_token)
   end
   def show
     render 'user'
@@ -18,4 +12,11 @@ class Api::V1::SessionsController < ApiController
     @message = 'User has been logged out successfully.'
     render 'message', :status => :ok
   end
+
+  private
+
+  def auth_params
+    params.permit(:email, :password)
+  end
+  
 end
