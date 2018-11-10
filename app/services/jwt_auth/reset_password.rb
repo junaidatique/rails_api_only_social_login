@@ -1,24 +1,24 @@
 module JWTAuth
-  class SendResetPasswordEmail
-    def initialize(email)
-      @email = email      
+  class ResetPassword
+    def initialize(attributes)      
+      @attributes = attributes      
     end
 
     # Service entry point
-    def call
-      if user.present?        
-        
-      end
+    def call      
+      user
     end
 
     private
 
-    attr_reader :email
+    attr_reader :attributes
 
     # verify user credentials
     def user
-      user = User.where(email: email).first
-      return user if user      
+      user = User.reset_password_by_token(attributes)      
+      return user if user.errors.blank?
+
+      raise(Mongoid::Errors::Validations, user)     
     end
   end
 end
