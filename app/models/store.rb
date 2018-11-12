@@ -7,8 +7,9 @@ class Store
 
   field :title, type: String
   field :url, type: String
-    
-  field :partner, type: String
+  
+  field :partner_id, type: String
+  field :partner_name, type: String
   field :partner_specific_url, type: String
 
   field :timezone, type: String
@@ -29,9 +30,12 @@ class Store
   field :products_last_updated, type: Time
 
   # relationships
+  
   belongs_to :user
   embeds_one :address, as: :addressable, class_name: Address.name, cascade_callbacks: true, autobuild: true
 
-  
+
+  has_many :profiles
+
 
 end
