@@ -31,11 +31,13 @@ class Store
 
   # relationships
   
-  belongs_to :user
+  belongs_to :user, index: true 
   embeds_one :address, as: :addressable, class_name: Address.name, cascade_callbacks: true, autobuild: true
 
 
   has_many :profiles
-
+  has_many :products
+  has_many :categories
+  has_many :updates
 
 end
