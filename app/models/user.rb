@@ -6,9 +6,9 @@ class User
   as_enum :role, %i{admin customer }
 
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, :trackable
 
   ## Database authenticatable
   field :email,              type: String, default: ""
@@ -21,12 +21,12 @@ class User
   ## Rememberable
   field :remember_created_at, type: Time
 
-  ## Trackable
-  # field :sign_in_count,      type: Integer, default: 0
-  # field :current_sign_in_at, type: Time
-  # field :last_sign_in_at,    type: Time
-  # field :current_sign_in_ip, type: String
-  # field :last_sign_in_ip,    type: String
+  # Trackable
+  field :sign_in_count,      type: Integer, default: 0
+  field :current_sign_in_at, type: Time
+  field :last_sign_in_at,    type: Time
+  field :current_sign_in_ip, type: String
+  field :last_sign_in_ip,    type: String
 
   ## Confirmable
   # field :confirmation_token,   type: String
@@ -42,9 +42,7 @@ class User
 
   field :name, type: String
 
-  # def send_devise_notification(notification, *args)
-  #   devise_mailer.send(notification, *args).deliver_later
-  #   # puts self.inspect
-  #   # devise_mailer.send(notification, self, *args).deliver_later
-  # end
+  # relationships
+  has_many :stores
+  
 end
