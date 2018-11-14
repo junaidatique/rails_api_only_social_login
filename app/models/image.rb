@@ -1,7 +1,8 @@
 class Image
   include Mongoid::Document
+  include Mongoid::Timestamps
   
-  field :external_url, type: String
+  include Partnerable
   
   embedded_in :imageable, polymorphic: true
 end

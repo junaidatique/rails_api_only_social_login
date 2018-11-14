@@ -1,5 +1,6 @@
 class Address
   include Mongoid::Document
+  include Mongoid::Geospatial
   
   field :address1, type: String
   field :address2, type: String

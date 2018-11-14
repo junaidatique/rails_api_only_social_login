@@ -27,7 +27,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 3.5'
-
+  gem 'faker'
 end
 
 group :development do
@@ -41,7 +41,7 @@ end
 group :test do
   gem 'factory_bot_rails'
   gem 'shoulda-matchers', '~> 3.1'
-  gem 'faker'
+  
   gem 'database_cleaner'
 end
 
@@ -56,3 +56,4 @@ gem 'jwt'
 gem 'simple_enum', '~> 2.3.0' , require: 'simple_enum/mongoid'
 gem 'sidekiq'
 gem 'slim-rails'
+gem 'mongoid_orderable'
