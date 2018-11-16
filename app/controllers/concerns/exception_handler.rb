@@ -1,9 +1,8 @@
-module ExceptionHandler
-  # provides the more graceful `included` method
+module ExceptionHandler  
   extend ActiveSupport::Concern
 
   included do
-    rescue_from Mongoid::Errors::DocumentNotFound do |e|
+    rescue_from JWTAuth::ExceptionHandler::MissingToken do |e|
       json_response({ message: e.message }, :not_found)
     end
 

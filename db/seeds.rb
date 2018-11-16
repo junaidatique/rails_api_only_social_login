@@ -1,4 +1,4 @@
-# User.create({email: 'hello@positng.ly', name: 'Admin', password: 'test1234', role: :admin})
+User.create({email: 'hello@positng.ly', name: 'Admin', password: 'test1234', role: :admin})
 
 services_json = {
   twitter: {
@@ -205,7 +205,7 @@ services = Service.all
       partner_created_at: Faker::Date.backward(1 + rand(40)),
       partner_updated_at: Faker::Date.backward(1 + rand(40)),      
       uniq_key: "shopify-#{Faker::Number.number(10)}-#{Time.now.to_i}",
-      description: Faker::Lorem.sentences(3),
+      description: Faker::Lorem.sentences(3).join(' '),
       position: i,
       is_published: true,
       partner_token: Faker::String.random(64),
@@ -235,6 +235,7 @@ services = Service.all
         is_token_expired: Faker::Boolean.boolean,
         store: store.id,
         service: service.id,
+        service_platform: service.service_platform.id,
         service_slug: service.slug,
         parent_profile: parent_profile
       }
@@ -253,7 +254,7 @@ services = Service.all
         partner_created_at: Faker::Date.backward(1 + rand(40)),
         partner_updated_at: Faker::Date.backward(1 + rand(40)),        
         uniq_key: "shopify-#{Faker::Number.number(10)}-#{Time.now.to_i}",
-        description: Faker::Lorem.sentences(3),
+        description: Faker::Lorem.sentences(3).join(' '),
         position: category_id,
         is_published: true,
         store_id: store.id
@@ -274,7 +275,7 @@ services = Service.all
           partner_created_at: Faker::Date.backward(1 + rand(40)),
           partner_updated_at: Faker::Date.backward(1 + rand(40)),        
           uniq_key: "shopify-#{Faker::Number.number(10)}-#{Time.now.to_i}",
-          description: Faker::Lorem.sentences(3),
+          description: Faker::Lorem.sentences(3).join(' '),
           position: product_id,
           is_published: true,
           store_id: store.id,
@@ -315,7 +316,7 @@ services = Service.all
             partner_created_at: Faker::Date.backward(1 + rand(40)),
             partner_updated_at: Faker::Date.backward(1 + rand(40)),        
             uniq_key: "shopify-#{Faker::Number.number(10)}-#{Time.now.to_i}",
-            description: Faker::Lorem.sentences(3),
+            description: Faker::Lorem.sentences(3).join(' '),
             position: product_id,
             is_published: true,            
             price: Faker::Number.decimal(3,2) * 100,    

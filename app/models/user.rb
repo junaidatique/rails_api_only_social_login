@@ -44,8 +44,15 @@ class User
 
 
   field :name, type: String
-
+  field :number_of_stores, type: Integer, default: 0
   # relationships
   has_many :stores
+
+  before_save :caculate_no_of_stores
+
+  def caculate_no_of_stores
+    number_of_stores = self.stores.count
+  end
+  
   
 end

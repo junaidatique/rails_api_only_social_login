@@ -18,7 +18,7 @@ class Store
   field :number_of_scheduled_posts, type: Integer, default: 0
   field :number_of_posted, type: Integer, default: 0
   field :products_last_updated, type: Time
-  field :is_installed, type: Boolean, default: true
+  
 
 
   # relationships  

@@ -25,6 +25,7 @@ class Profile
   #relationships
   belongs_to :store, index: true 
   belongs_to :service, index: true 
+  belongs_to :service_platform, index: true 
   belongs_to :parent_profile, index: true, optional: true, class_name: Profile.name, inverse_of: :child_profiles
 
   has_many :child_profiles, class_name: Profile.name, inverse_of: :parent_profile
@@ -34,4 +35,5 @@ class Profile
   #scopes 
   scope :facebook_profile, -> { where(service_slug: 'facebook_profile') }
   scope :buffer_profile, -> { where(service_slug: 'buffer') }
+  scope :connected, -> { where(is_connected: true) }
 end

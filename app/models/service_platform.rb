@@ -6,4 +6,5 @@ class ServicePlatform
   field :share_options, type: Hash
   #relationships
   has_many :services
+  has_many :profiles
 end

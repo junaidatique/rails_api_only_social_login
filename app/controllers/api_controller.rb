@@ -1,5 +1,7 @@
 class ApiController < ApplicationController
-  # include Response
+  include ActionView::Rendering
+
+  include Response
   include ExceptionHandler
 
   # called before every action on controllers

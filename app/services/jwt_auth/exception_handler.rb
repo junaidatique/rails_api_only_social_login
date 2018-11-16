@@ -10,7 +10,7 @@ module JWTAuth::ExceptionHandler
     # Define custom handlers
     rescue_from JWTAuth::ExceptionHandler::AuthenticationError, with: :unauthorized_request
     rescue_from Mongoid::Errors::InvalidValue, with: :four_twenty_two    
-    rescue_from JWTAuth::ExceptionHandler::MissingToken, with: :four_twenty_two
+    # rescue_from JWTAuth::ExceptionHandler::MissingToken, with: :four_twenty_two
     rescue_from JWTAuth::ExceptionHandler::InvalidToken, with: :four_twenty_two
 
     rescue_from Mongoid::Errors::DocumentNotFound do |e|
