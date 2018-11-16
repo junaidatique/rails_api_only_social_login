@@ -5,7 +5,9 @@ class Api::V1::RegistrationsController < ApiController
     user = User.create!(user_params)
     auth_token = JWTAuth::AuthenticateUser.new(user.email, user.password).call
     response = { message: JWTAuth::Message.account_created, auth_token: auth_token }
-    json_response(response, :created)
+    decoded_auth_token ||= JWTAuth::JsonWebToken.decode(@auth_token)
+    @current_user = User.find(decoded_auth_token[:user_id])    
+    render 'api/v1/users/user', status: :ok
   end
   private
 
