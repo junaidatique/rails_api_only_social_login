@@ -2,6 +2,9 @@ class User
   include Mongoid::Document
   include Mongoid::Timestamps
   include SimpleEnum::Mongoid
+  include Mongoid::History::Trackable
+
+  track_history   :on => [:fields]
 
   as_enum :role, %i{admin customer }
 
