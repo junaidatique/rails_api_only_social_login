@@ -1,4 +1,7 @@
 class Api::V1::UsersController < ApiController
-  before_action :authenticate_user!
-  
+  def show
+    puts @current_user.inspect
+    # json_response(@current_user)
+    render 'user'
+  end
 end
