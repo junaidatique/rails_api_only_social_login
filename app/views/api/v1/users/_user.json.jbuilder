@@ -1,3 +1,4 @@
+json.id user.id.to_s
 json.email user.email
 json.name user.name
 json.number_of_stores user.number_of_stores
