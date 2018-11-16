@@ -166,6 +166,17 @@ testing:
         password: <%= ENV['MONGOID_PASSWORD'] %>        
   options:
     raise_not_found_error: false
+staging:
+  clients:
+    default:
+      database: <%= ENV['MONGOID_DATABASE'] %>
+      hosts:
+        - <%= ENV['MONGOID_HOST'] %>
+      options:
+        user: <%= ENV['MONGOID_USERNAME'] %>
+        password: <%= ENV['MONGOID_PASSWORD'] %>        
+  options:
+    raise_not_found_error: false
 production:
   clients:
     default:
