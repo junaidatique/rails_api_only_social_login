@@ -166,6 +166,8 @@ GEM
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
+    rollbar (2.18.0)
+      multi_json
     rspec-core (3.8.0)
       rspec-support (~> 3.8.0)
     rspec-expectations (3.8.2)
@@ -246,6 +248,7 @@ DEPENDENCIES
   rack-cors
   rails (~> 5.2.1)
   redis (~> 4.0)
+  rollbar
   rspec-rails (~> 3.5)
   shoulda-matchers (~> 3.1)
   sidekiq
