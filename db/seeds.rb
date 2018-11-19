@@ -3,6 +3,7 @@ User.create({email: 'hello@positng.ly', name: 'Admin', password: 'test1234', rol
 services_json = {
   twitter: {
     name: 'Twitter',    
+    slug: 'twitter',    
     url: 'https://twitter.com',
     share_options: {
       'link' => 'Share as link',
@@ -17,6 +18,7 @@ services_json = {
   },
   facebook: {
     name: 'Facebook',    
+    name: 'facebook',    
     url: 'https://facebook.com',
     share_options: {
       'link' => 'Share as link',
@@ -44,6 +46,7 @@ services_json = {
   },
   linkedin: {
     name: 'Linkedin',
+    slug: 'linkedin',
     url: 'https://linkedin.com',
     share_options: {
       'link': 'Share as link'
@@ -68,6 +71,7 @@ services_json = {
   },
   pinterest: {
     name: 'Pinterest',    
+    slug: 'pinterest',    
     url: 'https://pinterest.com',
     share_options: {      
       'share_as_image' => 'Share image',      
@@ -80,6 +84,7 @@ services_json = {
   },
   instagram: {
     name: 'Instagram',    
+    slug: 'instagram',    
     url: 'https://instagram.com',
     share_options: {      
       'share_as_image' => 'Share image',      
@@ -99,6 +104,7 @@ services_json = {
   },
   Buffer: {
     name: 'Buffer',    
+    slug: 'buffer',    
     url: 'https://buffer.com',
     share_options: {      
       'share_as_link' => 'Share link',
