@@ -22,7 +22,7 @@ class Store
 
 
   # relationships  
-  belongs_to :user, index: true 
+  belongs_to :user, index: true, touch: true, counter_cache: :number_of_stores
   embeds_one :address, as: :addressable, class_name: Address.name, cascade_callbacks: true, autobuild: true
 
 

@@ -7,7 +7,7 @@ class OauthController < ApplicationController
 
     # puts response_params.inspect
     if response_params[:service_platform] == Constants::ServicePlatformsConstants::FACEBOOK_SLUG
-      puts ServicePlatforms::Auth::AuthResponse.new(response_params[:code]).call.inspect
+      puts ServicePlatforms::Auth::GetAccessToken.new(response_params[:code], ServicePlatforms::Facebook::Init.new.call).call.inspect
     end
     render json: '', status: status
   end

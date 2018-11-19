@@ -3,9 +3,8 @@ class Api::V1::RegistrationsController < ApiController
   def create
     user_params[:role] = :customer
     user = User.create!(user_params)
-    @auth_token = JWTAuth::AuthenticateUser.new(user.email, user.password).call    
-    decoded_auth_token ||= JWTAuth::JsonWebToken.decode(@auth_token)
-    @current_user = User.find(decoded_auth_token[:user_id])    
+    @auth_token = JWTAuth::AuthenticateUser.new(user.email, user.password).call        
+    @current_user = User.find_by_jwt @auth_token
     render 'api/v1/users/user', status: :ok
   end
   private

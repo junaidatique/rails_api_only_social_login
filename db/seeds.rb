@@ -2,8 +2,8 @@ User.create({email: 'hello@positng.ly', name: 'Admin', password: 'test1234', rol
 
 services_json = {
   twitter: {
-    name: 'Twitter',    
-    slug: 'twitter',    
+    name: Constants::ServicePlatformsConstants::TWITTER_NAME,
+    slug: Constants::ServicePlatformsConstants::TWITTER_SLUG,
     url: 'https://twitter.com',
     share_options: {
       'link' => 'Share as link',
@@ -17,15 +17,15 @@ services_json = {
     }]
   },
   facebook: {
-    name: 'Facebook',    
-    name: 'facebook',    
+    name: Constants::ServicePlatformsConstants::FACEBOOK_NAME,
+    slug: Constants::ServicePlatformsConstants::FACEBOOK_SLUG,
     url: 'https://facebook.com',
     share_options: {
       'link' => 'Share as link',
       'share_as_album' => 'Share as album',
       'share_as_timeline' => 'Share as timeline photo',
     },
-    service: [ 
+    service: [
       { 
         name: 'Facebook Profile', 
         slug: 'facebook_profile',       

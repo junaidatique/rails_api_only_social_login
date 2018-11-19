@@ -50,9 +50,15 @@ class User
 
   before_save :caculate_no_of_stores
 
-  def caculate_no_of_stores
-    number_of_stores = self.stores.count
+  def caculate_no_of_stores    
+    number_of_stores = self.stores.published.count if number_of_stores_changed?
   end
+  
+  def self.find_by_jwt auth_token
+    decoded_auth_token ||= JWTAuth::JsonWebToken.decode(auth_token)
+    User.find(decoded_auth_token[:user_id])    
+  end
+    
   
   
 end

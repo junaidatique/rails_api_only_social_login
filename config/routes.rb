@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     namespace :v1 do 
       devise_for :users
       resources :users, only: [:show]
-      get 'oauth/redirect/:service_platform', to: 'oauth#redirect', as: 'oauth_redirect'
+      get 'oauth/redirect/:store_id/:service_platform', to: 'oauth#redirect', as: 'oauth_redirect'
     end
   end
 end

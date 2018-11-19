@@ -2,6 +2,7 @@ class Api::V1::OauthController < ApiController
   def redirect
     payload = Hash.new
     payload[:user_id] = @current_user.id    
+    payload[:store_id] = platform_params[:store_id]
     if platform_params[:service_platform] == Constants::ServicePlatformsConstants::FACEBOOK_SLUG
       client  = ServicePlatforms::Facebook::Init.new.call
       scope   = ServicePlatforms::Facebook::Constnt::SCOPE      
@@ -15,7 +16,8 @@ class Api::V1::OauthController < ApiController
   private
   def platform_params
     params.permit(
-      :service_platform
+      :service_platform,
+      :store_id
     )
   end
 end

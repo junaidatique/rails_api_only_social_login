@@ -23,7 +23,7 @@ module JWTAuth
       # raise custom error
       raise(
         JWTAuth::ExceptionHandler::InvalidToken,
-        ("#{JWTAuth::Message.invalid_token} #{e.message}")
+        ("#{JWTAuth::Message.invalid_token}")
       )
     end
     def decoded_auth_token
