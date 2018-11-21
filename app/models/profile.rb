@@ -18,7 +18,7 @@ class Profile
   field :is_token_expired, type: Boolean, default: false
    
   #validations
-  validates :name, :service_user_id, :service_username, :service_slug, :access_token, presence: true
+  validates :name, :service_user_id, :service_slug, :access_token, presence: true
   #indexes
   index({ service_user_id: 1 }, { name: "service_user_id_index" })
 

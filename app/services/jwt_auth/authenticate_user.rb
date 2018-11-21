@@ -7,7 +7,7 @@ module JWTAuth
 
     # Service entry point
     def call
-      JWTAuth::JsonWebToken.encode(user_id: user.id) if user
+      user.get_jwt if user
     end
 
     private

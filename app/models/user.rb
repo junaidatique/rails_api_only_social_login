@@ -58,7 +58,11 @@ class User
     decoded_auth_token ||= JWTAuth::JsonWebToken.decode(auth_token)
     User.find(decoded_auth_token[:user_id])    
   end
-    
+  
+  def get_jwt(payload = {})
+    payload[:user_id] = self.id.to_s
+    JWTAuth::JsonWebToken.encode(payload)
+  end
   
   
 end

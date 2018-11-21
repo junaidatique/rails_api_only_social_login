@@ -22,6 +22,9 @@ module JWTAuth
       token = crypt.decrypt_and_verify data
       body  = JWT.decode(token, HMAC_SECRET)[0]
       HashWithIndifferentAccess.new body      
+    rescue ActiveSupport::MessageEncryptor::InvalidMessage => e
+      puts e.inspect
+      raise JWTAuth::ExceptionHandler::InvalidToken, "Invalid State"
     rescue JWT::DecodeError => e
       # raise custom error to be handled by custom handler
       raise JWTAuth::ExceptionHandler::InvalidToken, e.message

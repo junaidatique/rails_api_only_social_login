@@ -12,6 +12,9 @@ class ApiController < ApplicationController
 
   # Check for valid request token and return user
   def authorize_request
+    if controller_name == 'oauth' and action_name == 'autherize' and params[:state].present?
+      request.headers['Authorization'] = params[:state]
+    end
     @current_user = (JWTAuth::AuthorizeApiRequest.new(request.headers).call)[:user]
   end
 end
