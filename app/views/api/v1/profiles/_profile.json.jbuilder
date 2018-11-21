@@ -7,3 +7,4 @@ json.avatar_url profile.avatar_url
 json.formatted_username profile.formatted_username
 json.service_slug profile.service_slug
 json.url profile.url
+json.is_connected profile.is_connected

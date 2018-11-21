@@ -7,7 +7,22 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: 'json' } do
     namespace :v1 do 
       devise_for :users
-      resources :users, only: [:show]
+      resources :users, only: [:show] do
+        collection do
+          get 'me'
+        end
+      end
+      resources :stores, only: [:show] do 
+        resources :profiles, only: [:index] do
+          collection do
+            get 'connected'
+            put 'connect'
+          end
+          member do
+            delete 'disconnect'
+          end
+        end
+      end
       get 'oauth/redirect/:store_id/:service_platform', to: 'oauth#redirect', as: 'oauth_redirect'
       get 'oauth/:service_platform', to: 'oauth#autherize', as: 'oauth_autherize'
     end

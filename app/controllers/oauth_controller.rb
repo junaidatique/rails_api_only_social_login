@@ -1,4 +1,0 @@
-class OauthController < ApplicationController
-  
-  
-end
