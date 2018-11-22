@@ -26,6 +26,7 @@ module ServicePlatforms
         profile.service_platform = service_platform
         profile.is_token_expired = false
         profile.save
+        return profile.id
       end
     end
   end

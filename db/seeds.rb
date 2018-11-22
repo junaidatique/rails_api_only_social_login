@@ -4,22 +4,22 @@ services_json = {
   twitter: {
     name: ServicePlatforms::Constants::TWITTER_NAME,
     slug: ServicePlatforms::Constants::TWITTER_SLUG,
-    url: 'https://twitter.com',
+    url: 'https://twitter.com/',
     share_options: {
       'link' => 'Share as link',
       'share_one_image' => 'Share one image',
       'share_four_image' => 'Share four images',
     },
     service: [{ 
-      name: 'Twitter Profile', 
-      slug: 'twitter_profile',       
-      character_limit: 280      
+      name: ServicePlatforms::Constants::TWITTER_PROFILE_NAME,
+      slug: ServicePlatforms::Constants::TWITTER_PROFILE_SLUG,
+      character_limit: 280
     }]
   },
   facebook: {
     name: ServicePlatforms::Constants::FACEBOOK_NAME,
     slug: ServicePlatforms::Constants::FACEBOOK_SLUG,
-    url: 'https://facebook.com',
+    url: 'https://web.facebook.com/',
     share_options: {
       'link' => 'Share as link',
       'share_as_album' => 'Share as album',
@@ -27,154 +27,164 @@ services_json = {
     },
     service: [
       { 
-        name: 'Facebook Profile', 
-        slug: 'facebook_profile',       
+        name: ServicePlatforms::Constants::FACEBOOK_PROFILE_NAME,
+        slug: ServicePlatforms::Constants::FACEBOOK_PROFILE_SLUG,
         character_limit: 0,
         can_schedule: false
       },
       { 
-        name: 'Facebook Page', 
-        slug: 'facebook_page',     
+        name: ServicePlatforms::Constants::FACEBOOK_PAGE_NAME,
+        slug: ServicePlatforms::Constants::FACEBOOK_PAGE_SLUG,
         character_limit: 5000
       },
       { 
-        name: 'Facebook Group', 
-        slug: 'facebook_group',     
+        name: ServicePlatforms::Constants::FACEBOOK_GROUP_NAME,
+        slug: ServicePlatforms::Constants::FACEBOOK_GROUP_SLUG,
         character_limit: 5000 
       },
     ]
   },
   linkedin: {
-    name: 'Linkedin',
-    slug: 'linkedin',
+    name: ServicePlatforms::Constants::LINKEDIN_NAME,
+    slug: ServicePlatforms::Constants::LINKEDIN_SLUG,
     url: 'https://linkedin.com',
     share_options: {
       'link': 'Share as link'
     },
     service: [
       { 
-        name: 'Linkedin Profile', 
-        slug: 'linkedin_profile',  
+        name: ServicePlatforms::Constants::LINKEDIN_PROFILE_NAME,
+        slug: ServicePlatforms::Constants::LINKEDIN_PROFILE_SLUG,
         character_limit: 700 
       },
       { 
-        name: 'Linkedin Group', 
-        slug: 'linkedin_group', 
+        name: ServicePlatforms::Constants::LINKEDIN_GROUP_NAME,
+        slug: ServicePlatforms::Constants::LINKEDIN_GROUP_SLUG,
         character_limit: 200 
       },
       { 
-        name: 'Linkedin Page', 
-        slug: 'linkedin_page', 
+        name: ServicePlatforms::Constants::LINKEDIN_PAGE_NAME,
+        slug: ServicePlatforms::Constants::LINKEDIN_PAGE_SLUG,
         character_limit: 700 
       }
     ]
   },
   pinterest: {
-    name: 'Pinterest',    
-    slug: 'pinterest',    
+    name: ServicePlatforms::Constants::PINTEREST_NAME,
+    slug: ServicePlatforms::Constants::PINTEREST_SLUG,
     url: 'https://pinterest.com',
     share_options: {      
       'share_as_image' => 'Share image',      
     },
     service: [{ 
-      name: 'Pinterest Profile', 
-      slug: 'pinterest_profile',       
+      name: ServicePlatforms::Constants::PINTEREST_PROFILE_NAME,
+      slug: ServicePlatforms::Constants::PINTEREST_PROFILE_SLUG,
       character_limit: 500      
     }]
   },
   instagram: {
-    name: 'Instagram',    
-    slug: 'instagram',    
+    name: ServicePlatforms::Constants::INSTAGRAM_NAME,
+    slug: ServicePlatforms::Constants::INSTAGRAM_SLUG,    
     url: 'https://instagram.com',
     share_options: {      
       'share_as_image' => 'Share image',      
     },
     service: [
       { 
-        name: 'Instagram Profile', 
-        slug: 'instagram_profile',         
+        name: ServicePlatforms::Constants::INSTAGRAM_PROFILE_NAME,
+        slug: ServicePlatforms::Constants::INSTAGRAM_PROFILE_SLUG,
         character_limit: 2200 
       },
       { 
-        name: 'Instagram Business', 
-        slug: 'instagram_business',         
+        name: ServicePlatforms::Constants::INSTAGRAM_BUSINESS_NAME,
+        slug: ServicePlatforms::Constants::INSTAGRAM_BUSINESS_SLUG,
+        character_limit: 2200 
+      },  
+    ]
+  },
+  instagram_buffer: {
+    name: ServicePlatforms::Constants::BUFFER_INSTAGRAM_NAME,
+    slug: ServicePlatforms::Constants::BUFFER_INSTAGRAM_SLUG,    
+    url: 'https://instagram.com',
+    share_options: {      
+      'share_as_image' => 'Share image',      
+    },
+    service: [
+      { 
+        name: ServicePlatforms::Constants::BUFFER_INSTAGRAM_PROFILE_NAME,
+        slug: ServicePlatforms::Constants::BUFFER_INSTAGRAM_PROFILE_SLUG,
+        character_limit: 2200 
+      },
+      { 
+        name: ServicePlatforms::Constants::BUFFER_INSTAGRAM_BUSINESS_NAME,
+        slug: ServicePlatforms::Constants::BUFFER_INSTAGRAM_BUSINESS_SLUG,
         character_limit: 2200 
       },  
     ]
   },
   Buffer: {
-    name: 'Buffer',    
-    slug: 'buffer',    
+    name: ServicePlatforms::Constants::BUFFER_NAME,
+    slug: ServicePlatforms::Constants::BUFFER_SLUG,
     url: 'https://buffer.com',
     share_options: {      
       'share_as_link' => 'Share link',
     },
     service: [
       { 
-        name: 'Buffer', 
-        slug: 'buffer',         
+        name: ServicePlatforms::Constants::BUFFER_PROFILE_NAME,
+        slug: ServicePlatforms::Constants::BUFFER_PROFILE_SLUG,
         character_limit: 0,
         can_schedule: false 
       },
       { 
-        name: 'Buffer Twitter Profile', 
-        slug: 'buffer_twitter_profile', 
+        name: ServicePlatforms::Constants::BUFFER_TWITTER_NAME,
+        slug: ServicePlatforms::Constants::BUFFER_TWITTER_SLUG,
         character_limit: 280
       },
-      { 
-        name: 'Buffer Facebook Profile', 
-        slug: 'buffer_facebook_profile', 
+      {
+        name: ServicePlatforms::Constants::BUFFER_FACEBOOK_PROFILE_NAME,
+        slug: ServicePlatforms::Constants::BUFFER_FACEBOOK_PROFILE_SLUG,        
         character_limit: 0,
         can_schedule: false 
       },
       { 
-        name: 'Buffer Facebook Page', 
-        slug: 'buffer_facebook_page', 
+        name: ServicePlatforms::Constants::BUFFER_FACEBOOK_PAGE_NAME,
+        slug: ServicePlatforms::Constants::BUFFER_FACEBOOK_PAGE_SLUG,
         character_limit: 5000 
       },
       { 
-        name: 'Buffer Facebook Group', 
-        slug: 'buffer_facebook_group', 
+        name: ServicePlatforms::Constants::BUFFER_FACEBOOK_GROUP_NAME,
+        slug: ServicePlatforms::Constants::BUFFER_FACEBOOK_GROUP_SLUG,        
         character_limit: 5000 
       },
       { 
-        name: 'Buffer Linkedin Profile', 
-        slug: 'buffer_linkedin_profile', 
+        name: ServicePlatforms::Constants::BUFFER_LINKEDIN_PROFILE_NAME,
+        slug: ServicePlatforms::Constants::BUFFER_LINKEDIN_PROFILE_SLUG,        
         character_limit: 700 
       },
       { 
-        name: 'Buffer Linkedin Group', 
-        slug: 'buffer_linkedin_group', 
+        name: ServicePlatforms::Constants::BUFFER_LINKEDIN_GROUP_NAME,
+        slug: ServicePlatforms::Constants::BUFFER_LINKEDIN_GROUP_SLUG,        
         character_limit: 200 
       },
       { 
-        name: 'Buffer Linkedin Page', 
-        slug: 'buffer_linkedin_page', 
+        name: ServicePlatforms::Constants::BUFFER_LINKEDIN_PAGE_NAME,
+        slug: ServicePlatforms::Constants::BUFFER_LINKEDIN_PAGE_SLUG,
         character_limit: 700 
       },
       { 
-        name: 'Buffer Pinterest Profile', 
-        slug: 'buffer_pinterest_profile', 
+        name: ServicePlatforms::Constants::BUFFER_PINTEREST_PROFILE_NAME,
+        slug: ServicePlatforms::Constants::BUFFER_PINTEREST_PROFILE_SLUG,
         character_limit: 500 
-      },
-      { 
-        name: 'Buffer Instagram Profile', 
-        slug: 'buffer_instagram_profile', 
-        character_limit: 2200 
-      },
-      { 
-        name: 'Buffer Instagram Business', 
-        slug: 'buffer_instagram_business', 
-        character_limit: 2200 
-      }, 
-      { 
-        name: 'Buffer Google+ Profile', 
-        slug: 'buffer_google_plus_profile', 
+      },     
+      {
+        name: ServicePlatforms::Constants::BUFFER_GOOGLE_PROFILE_NAME,
+        slug: ServicePlatforms::Constants::BUFFER_GOOGLE_PROFILE_SLUG,         
         character_limit: 5000 
       }, 
       { 
-        name: 'Buffer Google+ Page', 
-        slug: 'buffer_google_plus_page', 
+        name: ServicePlatforms::Constants::BUFFER_GOOGLE_PAGE_NAME,
+        slug: ServicePlatforms::Constants::BUFFER_GOOGLE_PAGE_SLUG,        
         character_limit: 5000 
       }, 
     ]

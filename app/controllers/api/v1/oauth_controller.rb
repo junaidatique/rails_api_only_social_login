@@ -8,14 +8,9 @@ class Api::V1::OauthController < ApiController
     
     if platform_params[:service_platform] == ServicePlatforms::Constants::FACEBOOK_SLUG      
       redirect_url = ServicePlatforms::Facebook::AuthorizationUri.new(state).call
-    elsif platform_params[:service_platform] == ServicePlatforms::Constants::BUFFER_SLUG
-      client  = ServicePlatforms::Buffer::Init.new.call
-      scope   = ServicePlatforms::Buffer::Constants::SCOPE
-      response_type = ServicePlatforms::Buffer::Constants::RESPONSE_TYPE
-    end
-    
-    
-    
+    elsif platform_params[:service_platform] == ServicePlatforms::Constants::BUFFER_SLUG            
+      redirect_url = ServicePlatforms::BufferProfiles::AuthorizationUri.new(state).call
+    end    
     json_response({redirect_url: redirect_url})
   end
   def autherize
@@ -32,12 +27,11 @@ class Api::V1::OauthController < ApiController
       if response_params[:service_platform] == ServicePlatforms::Constants::FACEBOOK_SLUG
         ServicePlatforms::Facebook::HandleOauthResponse.new(response_params).call
       elsif response_params[:service_platform] == ServicePlatforms::Constants::BUFFER_SLUG      
-        ServicePlatforms::Auth::GetAccessToken.new(code).call.inspect
+        ServicePlatforms::BufferProfiles::HandleOauthResponse.new(response_params).call.inspect
       end
       @store = Store.find(token_values[:store_id])
       @service_platform = ServicePlatform.where(slug: response_params[:service_platform]).first
-      @is_connected = false
-      # render 'api/v1/profiles/profiles'
+      @is_connected = false      
     end
   end
   private

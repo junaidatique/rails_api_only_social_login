@@ -1,9 +1,10 @@
 module ServicePlatforms
   module Facebook
     class GetGroups
-      def initialize access_token, store_id
+      def initialize access_token, store_id, parent_profile_id
         @access_token = access_token        
         @store_id   = store_id
+        @parent_profile_id   = parent_profile_id
       end        
       def call        
         client_id = Rails.application.credentials[Rails.env.to_sym][:FACEBOOK_CLIENT_ID]
@@ -26,6 +27,7 @@ module ServicePlatforms
           profile.service_slug = service.slug
           profile.service_platform = service_platform
           profile.is_token_expired = false
+          profile.parent_profile = @parent_profile_id
           profile.save
           
         end

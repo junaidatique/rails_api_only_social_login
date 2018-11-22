@@ -1,11 +1,10 @@
 module ServicePlatforms
-  module Auth
+  module BufferProfiles
     class AuthorizationUri
-      def initialize(client, jwt_token, scope, response_type)
-        @client     = client
-        @jwt_token  = jwt_token
-        @scope      = scope
-        @response_type = response_type
+      def initialize(jwt_token)
+        @client     = ServicePlatforms::BufferProfiles::Init.new.call
+        @jwt_token  = jwt_token        
+        @response_type = ServicePlatforms::BufferProfiles::Constants::RESPONSE_TYPE
       end
       def call
         # puts @client.inspect
