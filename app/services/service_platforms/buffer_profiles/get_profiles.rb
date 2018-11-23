@@ -29,8 +29,7 @@ module ServicePlatforms
         profile.save
         parent_profile_id = profile.id
 
-        service_profiles = client.profiles
-        puts service_profiles.inspect
+        service_profiles = client.profiles        
         service_profiles.each do |service_profile|
           if service_profile.service == ServicePlatforms::Constants::INSTAGRAM_NAME
             service_platform = insta_platform
