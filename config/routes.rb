@@ -4,8 +4,10 @@ Rails.application.routes.draw do
   # devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   
-  namespace :api, defaults: { format: 'json' } do
+  namespace :api, defaults: { format: 'json' } do    
     namespace :v1 do 
+      get 'partner/signup/:partner_platform', to: 'partners#signup', as: 'partner_signup'
+      get 'partner/autherize/:partner_platform', to: 'partners#autherize', as: 'partner_autherize'
       devise_for :users
       resources :users, only: [:show] do
         collection do

@@ -12,7 +12,7 @@ module Partnerable
     field :uniq_key, type: String
     field :description, type: String
     field :position, type: Integer
-    field :is_published, type: Boolean
+    field :is_published, type: Boolean, default: true
 
     # validates :partner_id, :partner_name , presence: true
 
@@ -22,6 +22,7 @@ module Partnerable
     index({ uniq_key: 1 }, { unique: true, name: "uniq_key_index" })
     index({ partner_id: 1 }, { name: "partner_id_index" })  
     index({ is_published: 1 }, { name: "is_published_index" })  
+    index({ partner_specific_url: 1 }, { name: "partner_specific_url_index" })  
   end
 
   def publish!    

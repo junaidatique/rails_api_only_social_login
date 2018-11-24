@@ -29,6 +29,8 @@ module ExceptionHandler
       redirect_url = ServicePlatforms::Facebook::RerequestUri.new(state, ungranted_scope).call
       json_response({ redirect_url: redirect_url }, :not_acceptable)
     end
-    
+    rescue_from ShopifyAPI::ValidationException do |e|
+      json_response({ message: e.message }, :not_acceptable)
+    end
   end
 end

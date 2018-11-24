@@ -1,4 +1,4 @@
-User.create({email: 'hello@positng.ly', name: 'Admin', password: 'test1234', role: :admin})
+User.create({email: 'hello@posting.ly', name: 'Admin', password: 'test1234', role: :admin})
 
 services_json = {
   twitter: {
