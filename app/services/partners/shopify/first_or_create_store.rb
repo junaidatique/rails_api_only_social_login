@@ -1,13 +1,13 @@
 module Partners
   module Shopify
-    class FirstOrCreate
+    class FirstOrCreateStore
       def initialize(user_id, shop, token)
         @user_id  = user_id
         @shop     = shop
         @token    = token
       end
       def call
-        session = Partners::Shopify::ActivateSession.new(@shop, @token)        
+        session = Partners::Shopify::ActivateSession.new(@shop, @token).call
         shop_current = ShopifyAPI::Shop.current
         uniq_key = "#{Partners::Constants::SHOPIFY_SLUG}-#{shop_current.id}"
         store = Store.where(uniq_key: uniq_key).first_or_create
@@ -18,6 +18,7 @@ module Partners
         store.partner_specific_url = shop_current.myshopify_domain
         store.partner_created_at = shop_current.created_at
         store.partner_updated_at = shop_current.updated_at
+        store.partner_slug = Partners::Constants::SHOPIFY_SLUG
         store.uniq_key = uniq_key
         store.partner_token = @token
         store.timezone = shop_current.iana_timezone

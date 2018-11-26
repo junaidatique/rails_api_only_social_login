@@ -9,6 +9,7 @@ module Partnerable
     field :partner_specific_url, type: String
     field :partner_created_at, type: String
     field :partner_updated_at, type: String
+    field :partner_slug, type: String
     field :uniq_key, type: String
     field :description, type: String
     field :position, type: Integer

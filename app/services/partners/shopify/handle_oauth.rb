@@ -10,10 +10,15 @@ module Partners
         store = Store.where(partner_specific_url: shop_url).first
         if store.blank?
           token = Partners::Shopify::GenerateToken.new(@autherize_params).call          
-          user  = Partners::Shopify::SignupUser.new(@autherize_params[:shop], token).call
-          store = Partners::Shopify::FirstOrCreate.new(user.id, @autherize_params[:shop], token).call          
+          if jwt_token[:user_id].present? and User.find(jwt_token[:user_id]).present?
+            user  = User.find(jwt_token[:user_id])
+          else
+            user  = Partners::Shopify::SignupUser.new(@autherize_params[:shop], token).call
+          end
+          store = Partners::Shopify::FirstOrCreateStore.new(user.id, @autherize_params[:shop], token).call    
         end
-        puts store.inspect
+        SyncCollectionsJob.perform_later(Partners::Constants::SHOPIFY_SLUG, store.id.to_s)
+        SyncProductsJob.perform_later(Partners::Constants::SHOPIFY_SLUG, store.id.to_s)
       end
     end
   end
