@@ -4,5 +4,7 @@ class Image
   
   include Partnerable
   
-  embedded_in :imageable, polymorphic: true
+  field :thumbnail_url, type: String
+  
+  belongs_to :product
 end

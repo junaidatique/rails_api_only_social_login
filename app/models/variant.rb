@@ -10,14 +10,14 @@ class Variant
   field :postable_by_quantity, type: Boolean
   field :postable_by_price, type: Boolean
   field :postable_is_new, type: Boolean
-
+  field :image_external_keys, type: Array
 
   index({ postable_by_quantity: 1 }, { name: "postable_by_quantity_index" })  
   index({ postable_by_price: 1 }, { name: "postable_by_price_index" })  
   index({ postable_is_new: 1 }, { name: "postable_is_new_index" })  
 
-  embedded_in :products
-  embeds_many :images, as: :imageable, class_name: Image.name, cascade_callbacks: true
+  belongs_to :product
+  
 
   before_save :check_values
 

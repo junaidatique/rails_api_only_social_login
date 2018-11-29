@@ -3,8 +3,7 @@ class Product
   include Mongoid::Timestamps
   include Partnerable
   
-  field :quantity, type: Integer
-  field :is_unlimited, type: Boolean
+  field :quantity, type: Integer  
   field :minimum_price, type: Float
   field :maximum_price, type: Float
   field :on_sale, type: Boolean, default: false
@@ -22,8 +21,8 @@ class Product
   belongs_to :store, index: true 
   has_and_belongs_to_many :categories
   has_many :updates, as: :shareable, class_name: Update.name
-  embeds_many :images, as: :imageable, class_name: Image.name, cascade_callbacks: true
-  embeds_many :variants
+  has_many :images
+  has_many :variants
   has_many :updates
 
   before_save :check_values

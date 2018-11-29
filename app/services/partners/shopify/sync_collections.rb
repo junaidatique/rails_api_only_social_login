@@ -13,13 +13,15 @@ module Partners
         total_pages = (smart_collection_count / limit) + 1
         smart_collection_options = {}
         smart_collection_options[:type] = Partners::Shopify::Constants::SMART_COLLECTION
-        (1..total_pages).each do |page_id|          
-          SyncCollectionPagedJob.perform_later @partner_slug, @store_id, page_id, smart_collection_options
+        if smart_collection_count > 0
+          (1..total_pages).each do |page_id|          
+            SyncCollectionPagedJob.perform_later @partner_slug, @store_id, page_id, smart_collection_options
+          end
         end
         custom_collection_count = ShopifyAPI::CustomCollection.count
         total_pages = (custom_collection_count / limit) + 1
         custom_collection_options = {}
-        custom_collection_options[:type] = Partners::Shopify::Constants::SMART_COLLECTION
+        custom_collection_options[:type] = Partners::Shopify::Constants::CUSTOM_COLLECTION
         (1..total_pages).each do |page_id|
           SyncCollectionPagedJob.perform_later @partner_slug, @store_id, page_id, custom_collection_options
         end

@@ -15,8 +15,7 @@ module Partners
           collections  = ShopifyAPI::SmartCollection.find(:all, params: {limit: limit, page: @page_id} )
         else 
           collections = ShopifyAPI::CustomCollection.find(:all, params: {limit: limit, page: @page_id} )
-        end
-        collections_normalized = []
+        end        
         bulk_order = collections.map do |collection|
           { update_one:
             {
@@ -30,16 +29,21 @@ module Partners
                 partner_created_at: collection.updated_at,
                 partner_updated_at: collection.updated_at,
                 partner_slug: Partners::Constants::SHOPIFY_SLUG,                
+                uniq_key: "#{Partners::Constants::SHOPIFY_SLUG}-#{collection.id}",
                 description: collection.body_html,
                 is_published: !collection.published_at.blank?,
-                store_id: @store_id
+                store_id: store.id,
               }},
               upsert: true
             }
           }
         end        
         Category.collection.bulk_write(bulk_order)
-
+        category_uniq_keys = collections.map{|collection| "#{Partners::Constants::SHOPIFY_SLUG}-#{collection.id}"}
+        db_categories = Category.in(uniq_key: category_uniq_keys)
+        db_categories.each do |category|
+          SyncProductsJob.perform_later(Partners::Constants::SHOPIFY_SLUG, store.id.to_s, category.id.to_s)
+        end
       end
     end
   end

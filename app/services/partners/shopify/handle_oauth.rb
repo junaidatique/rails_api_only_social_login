@@ -16,9 +16,9 @@ module Partners
             user  = Partners::Shopify::SignupUser.new(@autherize_params[:shop], token).call
           end
           store = Partners::Shopify::FirstOrCreateStore.new(user.id, @autherize_params[:shop], token).call    
-        end
-        SyncCollectionsJob.perform_later(Partners::Constants::SHOPIFY_SLUG, store.id.to_s)
+        end        
         SyncProductsJob.perform_later(Partners::Constants::SHOPIFY_SLUG, store.id.to_s)
+        SyncCollectionsJob.perform_later(Partners::Constants::SHOPIFY_SLUG, store.id.to_s)
       end
     end
   end
