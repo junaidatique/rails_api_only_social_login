@@ -32,5 +32,8 @@ module ExceptionHandler
     rescue_from ShopifyAPI::ValidationException do |e|
       json_response({ message: e.message }, :not_acceptable)
     end
+    rescue_from OAuth::Unauthorized do |e|
+      json_response({ message: e.message }, :unprocessable_entity)
+    end
   end
 end

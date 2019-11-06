@@ -11,10 +11,7 @@ class Api::V1::PartnersController < ApiController
     options = Hash.new
     options[:jwt_token] = jwt_token
     options[:shop]      = signup_params[:shop]
-    redirect_url = partner::AuthorizationUri.new(options).call
-    if signup_params[:partner_platform] == Partners::Constants::SHOPIFY_SLUG
-      
-    end    
+    redirect_url = partner::AuthorizationUri.new(options).call    
     json_response({redirect_url: redirect_url})
   end
   def autherize    

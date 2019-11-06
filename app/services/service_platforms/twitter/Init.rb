@@ -1,14 +1,10 @@
 module ServicePlatforms
-  module Facebook
+  module Twitter
     class Init
       def call
-        return Rack::OAuth2::Client.new(
-          identifier: Rails.application.credentials[Rails.env.to_sym][:FACEBOOK_CLIENT_ID],
-          secret: Rails.application.credentials[Rails.env.to_sym][:FACEBOOK_CLIENT_SECRET],
-          redirect_uri: ServicePlatforms::Facebook::Constants::REDIRECT_URI,
-          authorization_endpoint: ServicePlatforms::Facebook::Constants::AUTH_ENDPOINT,
-          token_endpoint: ServicePlatforms::Facebook::Constants::TOKEN_ENDPOINT
-        )
+        api_key = Rails.application.credentials[Rails.env.to_sym][:TWITTER_API_KEY]
+        secret_key = Rails.application.credentials[Rails.env.to_sym][:TWITTER_SECRET_KEY]
+        OAuth::Consumer.new(api_key, secret_key, site: ServicePlatforms::Twitter::Constants::API_URL)
       end
       
     end

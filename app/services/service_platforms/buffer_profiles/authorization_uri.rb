@@ -1,17 +1,16 @@
 module ServicePlatforms
   module BufferProfiles
     class AuthorizationUri
-      def initialize(jwt_token)
-        @client     = ServicePlatforms::BufferProfiles::Init.new.call
-        @jwt_token  = jwt_token        
-        @response_type = ServicePlatforms::BufferProfiles::Constants::RESPONSE_TYPE
+      def initialize(current_user, payload)        
+        @jwt_token  = current_user.get_jwt(payload)        
       end
-      def call
-        # puts @client.inspect
-        authorization_uri = @client.authorization_uri(
+      def call        
+        client     = ServicePlatforms::BufferProfiles::Init.new.call
+        response_type = ServicePlatforms::BufferProfiles::Constants::RESPONSE_TYPE
+        authorization_uri = client.authorization_uri(
           scope: @scope,
           state: @jwt_token,
-          response_type: @response_type
+          response_type: response_type
         )
       end
       

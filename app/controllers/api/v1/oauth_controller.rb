@@ -3,14 +3,10 @@ class Api::V1::OauthController < ApiController
     payload = Hash.new    
     payload[:store_id] = platform_params[:store_id]
     payload[:service_platform] = platform_params[:service_platform]
-    state = @current_user.get_jwt(payload)
-    redirect_url = nil
     
-    if platform_params[:service_platform] == ServicePlatforms::Constants::FACEBOOK_SLUG      
-      redirect_url = ServicePlatforms::Facebook::AuthorizationUri.new(state).call
-    elsif platform_params[:service_platform] == ServicePlatforms::Constants::BUFFER_SLUG            
-      redirect_url = ServicePlatforms::BufferProfiles::AuthorizationUri.new(state).call
-    end    
+    redirect_url = nil
+    service_platform_object = ServicePlatforms::Build.new(platform_params[:service_platform]).call
+    redirect_url = service_platform_object::AuthorizationUri.new(@current_user, payload).call    
     json_response({redirect_url: redirect_url})
   end
   def autherize
@@ -22,13 +18,9 @@ class Api::V1::OauthController < ApiController
     if @current_user.blank?
       render json: 'Invalid Token', status: :unprocessable_entity
     else
-      puts @current_user.inspect
-      puts response_params.inspect
-      if response_params[:service_platform] == ServicePlatforms::Constants::FACEBOOK_SLUG
-        ServicePlatforms::Facebook::HandleOauthResponse.new(response_params).call
-      elsif response_params[:service_platform] == ServicePlatforms::Constants::BUFFER_SLUG      
-        ServicePlatforms::BufferProfiles::HandleOauthResponse.new(response_params).call.inspect
-      end
+      service_platform_object = ServicePlatforms::Build.new(platform_params[:service_platform]).call
+      service_platform_object::HandleOauthResponse.new(response_params).call
+      
       @store = Store.find(token_values[:store_id])
       @service_platform = ServicePlatform.where(slug: response_params[:service_platform]).first
       @is_connected = false      
@@ -41,7 +33,8 @@ class Api::V1::OauthController < ApiController
       :denied_scopes,
       :code,
       :state,
-      :service_platform
+      :service_platform,
+      :oauth_verifier
     )
   end
   def platform_params

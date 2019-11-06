@@ -1,10 +1,10 @@
 module ServicePlatforms
   module Facebook
     class AuthorizationUri
-      def initialize(jwt_token)        
-        @jwt_token  = jwt_token        
+      def initialize(current_user, payload)
+        @jwt_token  = current_user.get_jwt(payload)
       end
-      def call        
+      def call
         client  = ServicePlatforms::Facebook::Init.new.call
         scope   = ServicePlatforms::Facebook::Constants::SCOPE
         authorization_uri = client.authorization_uri(

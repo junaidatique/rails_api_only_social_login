@@ -11,7 +11,7 @@ module ServicePlatforms
         me = FbGraph2::User.me(@access_token)
         
         service_profile = me.fetch(fields: 'id,email,name,link')
-        service = Service.where(slug: 'facebook_profile').first
+        service = Service.where(slug: ServicePlatforms::Constants::FACEBOOK_PROFILE_SLUG).first
         service_platform = ServicePlatform.where(slug: ServicePlatforms::Constants::FACEBOOK_SLUG).first
         profile = Profile.where(
           service_id: service.id, 
